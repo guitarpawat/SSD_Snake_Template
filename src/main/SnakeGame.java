@@ -69,5 +69,27 @@ public class SnakeGame extends AbstractGame {
         snake.setDx(0);
         snake.setDy(1);
     }
+    
+    public static class Memento {
+        private Food.Memento food;
+        private Snake.Memento snake;
+        
+        public Memento(Food food, Snake snake) {
+            this.food = food.save();
+            this.snake = snake.save();
+        }
+    }
+    
+    public Memento save() {
+        return new Memento(food, snake);
+    }
+    
+    public void load(Memento m) {
+        snake.load(m.snake);
+        food.load(m.food);
+        map.getBlocks().clear();
+        map.getBlocks().addAll(snake.getBody());
+        map.getBlocks().add(food);
+    }
 
 }

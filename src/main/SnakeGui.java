@@ -17,15 +17,15 @@ public class SnakeGui extends JFrame implements Observer {
     private Controller controller;
     private JButton saveButton;
     private JButton loadButton;
-
-    // TODO: You might need one variable to hold a memento
+    private SnakeGame.Memento saved;
 
     private void loadGame() {
-        // TODO: Implement Loading Game Logic
+        game.load(saved);
     }
 
     private void saveGame() {
-        // TODO: Implement Saving Game Logic
+        saved = game.save();
+        loadButton.setEnabled(true);
     }
 
     public SnakeGui(SnakeGame snakeGame) {
